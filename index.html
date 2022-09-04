@@ -49,16 +49,16 @@
     let token = urlParams.get('color')
     console.log(token);
     if (token == "green") {
-      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_diffuseColor', 0.0, 1.0, 0.0, 1);
+      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_color', 0.0, 1.0, 0.0, 1);
       return
     }
     else if (token == "red") {
 
-      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_diffuseColor', 1.0, 0.0, 0.0, 1);
+      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_color', 1.0, 0.0, 0.0, 1);
     }
     else if (token == "blue") {
 
-      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_diffuseColor', 0.0, 0.0, 1.0, 1);
+      deepAR.changeParameterVector('Right_VivoShoe.fbx', 'MeshRenderer', 'u_color', 0.0, 0.0, 1.0, 1);
     }
   }
 </script>
