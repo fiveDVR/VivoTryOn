@@ -189,7 +189,6 @@
       right: 10px;
       border: 0 none white;
     }
-
   </style>
 </head>
 
@@ -247,8 +246,8 @@
       callbacks: {
         onInitialize: function () {
           // start video immediately after the initalization, mirror = true
-          deepAR.startVideo(true);
-
+          //  deepAR.startVideo(true);
+          startExternalVideo('environment');
           // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
           deepAR.switchEffect(0, 'slot', './effects/Pod.deepar', function () {
             // effect loaded
@@ -257,54 +256,111 @@
       }
     });
 
-    deepAR.callbacks.onCameraPermissionAsked = function () {
-      console.log('camera permission asked');
-    };
+    function startExternalVideo(facingMode) {
+      cleanupVideoObjects();
+      // create video element
+      var video = document.createElement('video');
+      video.muted = true;
+      video.loop = true;
+      video.controls = true;
+      video.setAttribute('playsinline', 'playsinline');
+      video.style.width = '100%';
+      video.style.height = '100%';
 
-    deepAR.callbacks.onCameraPermissionGranted = function () {
-      console.log('camera permission granted');
-    };
+      // put it somewhere in the DOM
+      var videoContainer = document.createElement('div');
+      videoContainer.appendChild(video);
+      videoContainer.style.width = '1px';
+      videoContainer.style.height = '1px';
+      videoContainer.style.position = 'absolute';
+      videoContainer.style.top = '0px';
+      videoContainer.style.left = '0px';
+      videoContainer.style['z-index'] = '-1';
+      document.body.appendChild(videoContainer);
 
-    deepAR.callbacks.onCameraPermissionDenied = function () {
-      console.log('camera permission denied');
-    };
+      videoObjects.videoContainer = videoContainer;
+      videoObjects.video = video;
 
-    deepAR.callbacks.onScreenshotTaken = function (photo) {
-      console.log('screenshot taken');
-    };
+      navigator.mediaDevices.getUserMedia({ video: { facingMode } }).then(function (stream) {
+        try {
+          video.srcObject = stream;
+        } catch (error) {
+          video.src = URL.createObjectURL(stream);
+        }
+        setTimeout(function () {
+          video.play();
+        }, 50);
+      }).catch(function (error) {
+        console.log('error in video play:', error);
+      });
 
-    deepAR.callbacks.onImageVisibilityChanged = function (visible) {
-      console.log('image visible', visible);
-    };
+      // tell the DeepAR SDK about our new video element
+      deepAR.setVideoElement(video, facingMode === 'user');
 
-    deepAR.callbacks.onFaceVisibilityChanged = function (visible) {
-      console.log('face visible', visible);
-    };
+      // var loaderWrapper = document.getElementById('loader-wrapper');
+      // loaderWrapper.style.display = 'none';
+    }
 
-    // Hides the loading ui when the video starts
-    deepAR.callbacks.onVideoStarted = function () {
-      var loaderWrapper = document.getElementById('loader-wrapper');
-      loaderWrapper.style.display = 'none';
-    };
+    function cleanupVideoObjects() {
+      if (videoObjects.length > 0) {
+        videoObjects.videoContainer.parentNode.removeChild(videoObjects.videoContainer);
+        videoObjects.videoContainer = null;
+        if (videoObjects.video.srcObject) {
+          //getUserMedia starts a stream, all tracks on all streams need to be stoppedbefore calling getUserMedia again
+          videoObjects.video.srcObject.getTracks().forEach(track => track.stop())
+        }
+        videoObjects.video.pause();
+        videoObjects = {};
+      }
 
-    var effects = [
-      './effects/Pod.deepar',
-      './effects/Wave.deepar',
-      './effects/Wing.deepar'
-    ];
+      deepAR.callbacks.onCameraPermissionAsked = function () {
+        console.log('camera permission asked');
+      };
 
-    //#region Buttons assignment
-    document.getElementById('PodBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[0]);
-    };
+      deepAR.callbacks.onCameraPermissionGranted = function () {
+        console.log('camera permission granted');
+      };
 
-    document.getElementById('WaveBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[1]);
-    };
+      deepAR.callbacks.onCameraPermissionDenied = function () {
+        console.log('camera permission denied');
+      };
 
-    document.getElementById('WingBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[2]);
-    };
+      deepAR.callbacks.onScreenshotTaken = function (photo) {
+        console.log('screenshot taken');
+      };
+
+      deepAR.callbacks.onImageVisibilityChanged = function (visible) {
+        console.log('image visible', visible);
+      };
+
+      deepAR.callbacks.onFaceVisibilityChanged = function (visible) {
+        console.log('face visible', visible);
+      };
+
+      // Hides the loading ui when the video starts
+      deepAR.callbacks.onVideoStarted = function () {
+        var loaderWrapper = document.getElementById('loader-wrapper');
+        loaderWrapper.style.display = 'none';
+      };
+
+      var effects = [
+        './effects/Pod.deepar',
+        './effects/Wave.deepar',
+        './effects/Wing.deepar'
+      ];
+
+      //#region Buttons assignment
+      document.getElementById('PodBtn').onclick = function (e) {
+        deepAR.switchEffect(0, 'slot', effects[0]);
+      };
+
+      document.getElementById('WaveBtn').onclick = function (e) {
+        deepAR.switchEffect(0, 'slot', effects[1]);
+      };
+
+      document.getElementById('WingBtn').onclick = function (e) {
+        deepAR.switchEffect(0, 'slot', effects[2]);
+      };
     //#endregion
   </script>
 </body>
