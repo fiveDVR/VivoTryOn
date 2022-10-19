@@ -251,6 +251,8 @@
           // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
           deepAR.switchEffect(0, 'slot', './effects/Pod.deepar', function () {
             // effect loaded
+            var loaderWrapper = document.getElementById('loader-wrapper');
+            loaderWrapper.style.display = 'none';
           });
         }
       }
@@ -258,7 +260,7 @@
 
     // Store video objects for cleanup
     var videoObjects = {};
-    
+
     function startExternalVideo(facingMode) {
       cleanupVideoObjects();
       // create video element
