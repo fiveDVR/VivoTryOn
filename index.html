@@ -145,7 +145,7 @@
       border: 0 none white;
     }
 
-    #WingBtn {
+    #WingBlkBtn {
       border-radius: 50% 50% 50% 50%;
       background-image: url('thumbs/WING.png');
       background-repeat: no-repeat;
@@ -157,6 +157,21 @@
       top: 440px;
       position: fixed;
       left: 10px;
+      border: 0 none white;
+    }
+
+    #WingWhiteBtn {
+      border-radius: 50% 50% 50% 50%;
+      background-image: url('thumbs/WING_UNDYED.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: local;
+      background-size: contain;
+      width: 80px;
+      height: 80px;
+      top: 440px;
+      position: fixed;
+      left: 100px;
       border: 0 none white;
     }
 
@@ -201,7 +216,8 @@
   -->
   <button type="button" id="PodBtn"></button>
   <button type="button" id="WaveBtn"></button>
-  <button type="button" id="WingBtn"></button>
+  <button type="button" id="WingBlkBtn"></button>
+  <button type="button" id="WingWhiteBtn"></button>
 
   <!--
     TryOn / Place Buttons
@@ -351,7 +367,8 @@
     var effects = [
       './effects/Pod.deepar',
       './effects/Wave.deepar',
-      './effects/Wing.deepar'
+      './effects/Wing_black.deepar',
+      './effects/Wing_white.deepar'
     ];
 
     //#region Buttons assignment
@@ -363,8 +380,12 @@
       deepAR.switchEffect(0, 'slot', effects[1]);
     };
 
-    document.getElementById('WingBtn').onclick = function (e) {
+    document.getElementById('WingBlkBtn').onclick = function (e) {
       deepAR.switchEffect(0, 'slot', effects[2]);
+    };
+
+    document.getElementById('WingWhiteBtn').onclick = function (e) {
+      deepAR.switchEffect(0, 'slot', effects[3]);
     };
     //#endregion
   </script>
