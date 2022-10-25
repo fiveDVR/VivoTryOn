@@ -165,6 +165,29 @@
       right: 10px;
       border: 0 none white;
     }
+    @-webkit-keyframes sk-scaleout {
+      0% {
+        -webkit-transform: scale(0)
+      }
+
+      100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sk-scaleout {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
@@ -183,7 +206,7 @@
   <!--
     TryOn / Place Buttons
   -->
-  <button type="button" id="TryOnBtn"></button>
+  <!-- <button type="button" id="TryOnBtn"></button> -->
   <button type="button" id="PlaceBtn"></button>
 
   <div id="loader-wrapper">
@@ -347,6 +370,10 @@
 
     document.getElementById('WingWhiteBtn').onclick = function (e) {
       deepAR.switchEffect(0, 'slot', effects[3]);
+    };
+
+    document.getElementById('PlaceBtn').onclick = function (e) {
+     
     };
     //#endregion
   </script>
