@@ -2,7 +2,6 @@
 <html lang="en">
 
 <script type="text/javascript">
-
   function SelectShoeIndex() {
     const modelViewer = document.querySelector("model-viewer");
     let queryString = window.location.search;
@@ -12,27 +11,48 @@
     if (token == "0") {
       document.title = "ModelViewer - POD";
       modelViewer.src = './pod.glb'
-      modelViewer.poster='./poster.webp'
+      modelViewer.poster = './PodPoster.webp'
     }
     else if (token == "1") {
       document.title = "ModelViewer - Wave"
-      modelViewer.src = './pod.glb'
-      modelViewer.poster='./poster.webp'
+      modelViewer.src = './wave.glb'
+      modelViewer.poster = './WavePoster.webp'
     }
     else if (token == "2") {
       document.title = "ModelViewer - Wing Black"
-      modelViewer.src = './pod.glb'
-      modelViewer.poster='./poster.webp'
+      modelViewer.src = './WingBlack.glb'
+      modelViewer.poster = './WingBlackPoster.webp'
     }
     else if (token == "3") {
       document.title = "ModelViewer - Wing White"
-      modelViewer.src = './pod.glb'
-      modelViewer.poster='./poster.webp'
+      modelViewer.src = './WingWhite.glb'
+      modelViewer.poster = './WingWhitePoster.webp'
     }
+    document.getElementById('TryOnBtn').onclick = function (e) {
+      window.location.href = "/";
+    };
   }
+
 </script>
 
 <head>
+  <style>
+    #TryOnBtn {
+      border-radius: 50% 50% 50% 50%;
+      background-image: url('./TRY-ON.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: local;
+      background-size: contain;
+      width: 80px;
+      height: 80px;
+      top: 100px;
+      position: fixed;
+      right: 10px;
+      border: 0 none white;
+      z-index: 1;
+    }
+  </style>
   <title id="title">&lt;model-viewer&gt; template</title>
   <meta charset="utf-8">
   <meta name="description" content="&lt;model-viewer&gt; template">
@@ -43,6 +63,8 @@
 </head>
 
 <body onload="SelectShoeIndex()">
+
+  <button type="button" id="TryOnBtn"></button>
   <!-- <model-viewer> HTML element -->
   <model-viewer ar ar-modes="quick-look scene-viewer webxr " camera-controls poster="poster.webp" shadow-intensity="1">
     <div class="progress-bar hide" slot="progress-bar">
