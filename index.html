@@ -165,6 +165,7 @@
       right: 10px;
       border: 0 none white;
     }
+
     @-webkit-keyframes sk-scaleout {
       0% {
         -webkit-transform: scale(0)
@@ -220,9 +221,20 @@
   <script type="text/javascript" src="lib/js/deepar.js"></script>
 
   <script type="text/javascript">
+    var loaderWrapper = document.getElementById('loader-wrapper');
     var canvasHeight = window.innerHeight;
     var canvasWidth = window.innerWidth;
+    var selectedShoeID = 0;
 
+    function SetLoaderVisibility(visibility) {
+      if (visibility == true) {
+        loaderWrapper.style.display = '';
+        loaderWrapper.style.backgroundColor = 'rgb(255,255,255,0.4)';
+      }
+      else {
+        loaderWrapper.style.display = 'none';
+      }
+    }
     // desktop, the width of the canvas is 0.66 * window height and on mobile it's fullscreen
     if (window.innerWidth > window.innerHeight) {
       canvasWidth = Math.floor(window.innerHeight * 0.66);
@@ -251,8 +263,7 @@
           // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
           deepAR.switchEffect(0, 'slot', './effects/Pod.deepar', function () {
             // effect loaded
-            var loaderWrapper = document.getElementById('loader-wrapper');
-            loaderWrapper.style.display = 'none';
+            SetLoaderVisibility(false);
           });
         }
       }
@@ -301,9 +312,6 @@
 
       // tell the DeepAR SDK about our new video element
       deepAR.setVideoElement(video, facingMode === 'user');
-
-      // var loaderWrapper = document.getElementById('loader-wrapper');
-      // loaderWrapper.style.display = 'none';
     }
 
     function cleanupVideoObjects() {
@@ -344,8 +352,7 @@
 
     // Hides the loading ui when the video starts
     deepAR.callbacks.onVideoStarted = function () {
-      var loaderWrapper = document.getElementById('loader-wrapper');
-      loaderWrapper.style.display = 'none';
+      SetLoaderVisibility(false);
     };
 
     var effects = [
@@ -357,25 +364,42 @@
 
     //#region Buttons assignment
     document.getElementById('PodBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[0]);
+      SetLoaderVisibility(true);
+      selectedShoeID = 0;
+      deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
+        SetLoaderVisibility(false);
+      });
     };
 
     document.getElementById('WaveBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[1]);
+      SetLoaderVisibility(true);
+      selectedShoeID = 1;
+      deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
+        SetLoaderVisibility(false);
+      });
     };
 
     document.getElementById('WingBlkBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[2]);
+      SetLoaderVisibility(true);
+      selectedShoeID = 2;
+      deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
+        SetLoaderVisibility(false);
+      });
     };
 
     document.getElementById('WingWhiteBtn').onclick = function (e) {
-      deepAR.switchEffect(0, 'slot', effects[3]);
+      SetLoaderVisibility(true);
+      selectedShoeID = 3;
+      deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
+        SetLoaderVisibility(false);
+      });
     };
 
     document.getElementById('PlaceBtn').onclick = function (e) {
-      window.location.href = './modelviewer/modelviewer.html'
+      window.location.href = './modelviewer/modelviewer.html?id=' + selectedShoeID;
     };
     //#endregion
+
   </script>
 </body>
 
