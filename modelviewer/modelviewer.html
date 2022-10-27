@@ -29,7 +29,7 @@
       modelViewer.poster = './WingWhitePoster.webp'
     }
     document.getElementById('TryOnBtn').onclick = function (e) {
-      window.location.href = "/VivoTryOn/index.html";
+      window.open("/VivoTryOn/index.html", "_self");
     };
   }
 
@@ -66,7 +66,7 @@
 
   <button type="button" id="TryOnBtn"></button>
   <!-- <model-viewer> HTML element -->
-  <model-viewer ar ar-modes="quick-look scene-viewer webxr " camera-controls poster="poster.webp" shadow-intensity="1">
+  <model-viewer ar ar-modes="quick-look scene-viewer webxr " camera-controls shadow-intensity="1">
     <div class="progress-bar hide" slot="progress-bar">
       <div class="update-bar"></div>
     </div>

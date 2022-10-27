@@ -221,6 +221,11 @@
   <script type="text/javascript" src="lib/js/deepar.js"></script>
 
   <script type="text/javascript">
+    window.addEventListener('popstate', function (event) {
+      console.log('image visible');
+
+
+    });
     var loaderWrapper = document.getElementById('loader-wrapper');
     var canvasHeight = window.innerHeight;
     var canvasWidth = window.innerWidth;
@@ -396,7 +401,7 @@
     };
 
     document.getElementById('PlaceBtn').onclick = function (e) {
-      window.location.href = './modelviewer/modelviewer.html?id=' + selectedShoeID;
+      window.open('./modelviewer/modelviewer.html?id=' + selectedShoeID, "_self");
     };
     //#endregion
 
