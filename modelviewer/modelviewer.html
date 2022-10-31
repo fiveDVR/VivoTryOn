@@ -10,26 +10,26 @@
     console.log(token);
     if (token == "0") {
       document.title = "ModelViewer - POD";
-      modelViewer.src = './android/pods.glb'
-      modelViewer.iosSrc = './IOS/pod_resized.glb'
+      modelViewer.src = './android/pod.glb'
+      modelViewer.iosSrc = './IOS/pod.usdz'
       modelViewer.poster = './PodPoster.webp'
     }
     else if (token == "1") {
       document.title = "ModelViewer - Wave"
       modelViewer.src = './android/wave.glb'
-      modelViewer.iosSrc = './IOS/wave.glb'
+      modelViewer.iosSrc = './IOS/wave.usdz'
       modelViewer.poster = './WavePoster.webp'
     }
     else if (token == "2") {
       document.title = "ModelViewer - Wing Black"
       modelViewer.src = './android/WingBlack.glb'
-      modelViewer.iosSrc = './IOS/WingBlack.glb'
+      modelViewer.iosSrc = './IOS/WingBlack.usdz'
       modelViewer.poster = './WingBlackPoster.webp'
     }
     else if (token == "3") {
       document.title = "ModelViewer - Wing White"
       modelViewer.src = './android/WingWhite.glb'
-      modelViewer.iosSrc = './IOS/WingWhite.glb'
+      modelViewer.iosSrc = './IOS/WingWhite.usdz'
       modelViewer.poster = './WingWhitePoster.webp'
     }
     document.getElementById('TryOnBtn').onclick = function (e) {
