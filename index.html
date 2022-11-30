@@ -33,7 +33,7 @@
     }
 
     .loader {
-      background-image: url('./Images/VivoSplash.png');
+      background-image: url('./Images/Loading_Feet.gif');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: local;
@@ -45,8 +45,8 @@
       position: fixed;
       display: inline-block;
       border: 0 none white;
-      -webkit-animation: sk-scaleout 1.5s infinite ease-in-out;
-      animation: sk-scaleout 2s infinite ease-in-out;
+      /* -webkit-animation: sk-scaleout 1.5s infinite ease-in-out;
+      animation: sk-scaleout 2s infinite ease-in-out; */
     }
 
     .thumb {
@@ -269,7 +269,7 @@
           // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
           deepAR.switchEffect(0, 'slot', './effects/Pod.deepar', function () {
             // effect loaded
-            SetLoaderVisibility(false);
+           SetLoaderVisibility(false);
           });
         }
       }
