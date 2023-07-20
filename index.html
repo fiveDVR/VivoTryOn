@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <title>Vivo Try-On</title>
   <style>
+    
     canvas.deepar {
       border: 0px none;
       background-color: rgb(0, 0, 0);
@@ -60,82 +61,76 @@
       height: 70px;
     }
 
-    #PodBtn {
-      border-radius: 50% 50% 50% 50%;
-      background-image: url('Images/POD.png');
+ #ObsidianBtn {
+      background-image: url('Images/Obsidian.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: local;
       background-size: contain;
       width: 80px;
-      height: 80px;
-      top: 200px;
+      height: 105px;
+      top: 600px;
       position: fixed;
       left: 10px;
       border: 0 none white;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: #ffffff00;
     }
 
-    #PodBtn:focus {
-      border: 2px solid green;
-    }
-
-
-    #WaveBtn {
-      border-radius: 50% 50% 50% 50%;
-      background-image: url('Images/WAVE.png');
+    #SodiumBtn {
+     background-image: url('Images/Sodium.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: local;
       background-size: contain;
       width: 80px;
-      height: 80px;
-      top: 320px;
-      position: fixed;
-      left: 10px;
-      border: 0 none white;
-    }
-
-    #WaveBtn:focus {
-      border: 2px solid green;
-    }
-
-    #WingBlkBtn {
-      border-radius: 50% 50% 50% 50%;
-      background-image: url('Images/WING.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: local;
-      background-size: contain;
-      width: 80px;
-      height: 80px;
-      top: 440px;
-      position: fixed;
-      left: 10px;
-      border: 0 none white;
-    }
-
-    #WingBlkBtn:focus {
-      border: 2px solid green;
-    }
-
-    #WingWhiteBtn {
-      border-radius: 50% 50% 50% 50%;
-      background-image: url('Images/WING_UNDYED.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: local;
-      background-size: contain;
-      width: 80px;
-      height: 80px;
-      top: 440px;
+      height: 105px;
+      top: 600px;
       position: fixed;
       left: 100px;
       border: 0 none white;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: #ffffff00;
     }
 
-    #WingWhiteBtn:focus {
-      border: 2px solid green;
+
+
+    #LavaBtn {
+      background-image: url('Images/Lava.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: local;
+      background-size: contain;
+      width: 80px;
+      height: 105px;
+      top: 600px;
+      position: fixed;
+      left: 190px;
+      border: 0 none white;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: #ffffff00;
     }
+
+    #ForestBtn {
+      background-image: url('Images/Forest.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: local;
+      background-size: contain;
+      width: 80px;
+      height: 105px;
+      top: 600px;
+      position: fixed;
+      left: 280px;
+      border: 0 none white;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: #ffffff00;
+    }
+
 
     #TryOnBtn {
       border-radius: 50% 50% 50% 50%;
@@ -190,6 +185,7 @@
         opacity: 0;
       }
     }
+
   </style>
 </head>
 
@@ -200,11 +196,10 @@
   <!--
     Shoes Buttons
   -->
-  <button type="button" id="PodBtn"></button>
-  <button type="button" id="WaveBtn"></button>
-  <button type="button" id="WingBlkBtn"></button>
-  <button type="button" id="WingWhiteBtn"></button>
-
+  <button type="button" id="ObsidianBtn"></button>
+  <button type="button" id="SodiumBtn"></button>
+  <button type="button" id="LavaBtn"></button>
+  <button type="button" id="ForestBtn"></button>
   <!--
     TryOn / Place Buttons
   -->
@@ -362,14 +357,14 @@
     };
 
     var effects = [
-      './effects/Pod.deepar',
+      './effects/Obsidian.deepar',
       './effects/Wave.deepar',
       './effects/Wing_black.deepar',
       './effects/Wing_white.deepar'
     ];
 
     //#region Buttons assignment
-    document.getElementById('PodBtn').onclick = function (e) {
+    document.getElementById('ObsidianBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 0;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
@@ -377,7 +372,7 @@
       });
     };
 
-    document.getElementById('WaveBtn').onclick = function (e) {
+    document.getElementById('SodiumBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 1;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
@@ -385,7 +380,7 @@
       });
     };
 
-    document.getElementById('WingBlkBtn').onclick = function (e) {
+    document.getElementById('LavaBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 2;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
@@ -393,7 +388,7 @@
       });
     };
 
-    document.getElementById('WingWhiteBtn').onclick = function (e) {
+    document.getElementById('ForestBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 3;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
