@@ -61,8 +61,8 @@
       height: 70px;
     }
 
- #ObsidianBtn {
-      background-image: url('Images/Obsidian.png');
+ #AquaBtn {
+      background-image: url('Images/Aqua.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: local;
@@ -78,8 +78,8 @@
   background-color: #ffffff00;
     }
 
-    #SodiumBtn {
-     background-image: url('Images/Sodium.png');
+    #CloudBtn {
+     background-image: url('Images/Cloud.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: local;
@@ -200,8 +200,8 @@
   <!--
     Shoes Buttons
   -->
-  <button type="button" id="ObsidianBtn"></button>
-  <button type="button" id="SodiumBtn"></button>
+  <button type="button" id="AquaBtn"></button>
+  <button type="button" id="CloudBtn"></button>
   <button type="button" id="LavaBtn"></button>
   <button type="button" id="ForestBtn"></button>
   <!--
@@ -266,7 +266,7 @@
           //  deepAR.startVideo(true);
           startExternalVideo('environment');
           // or we can setup the video element externally and call deepAR.setVideoElement (see startExternalVideo function below)
-          deepAR.switchEffect(0, 'slot', './effects/Obsidian.deepar', function () {
+          deepAR.switchEffect(0, 'slot', './effects/Aqua.deepar', function () {
             // effect loaded
            SetLoaderVisibility(false);
           });
@@ -361,14 +361,14 @@
     };
 
     var effects = [
-      './effects/Obsidian.deepar',
-      './effects/Sodium.deepar',
+      './effects/Aqua.deepar',
+      './effects/Cloud.deepar',
       './effects/Lava.deepar',
       './effects/Forest.deepar'
     ];
 
     //#region Buttons assignment
-    document.getElementById('ObsidianBtn').onclick = function (e) {
+    document.getElementById('AquaBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 0;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {
@@ -376,7 +376,7 @@
       });
     };
 
-    document.getElementById('SodiumBtn').onclick = function (e) {
+    document.getElementById('CloudBtn').onclick = function (e) {
       SetLoaderVisibility(true);
       selectedShoeID = 1;
       deepAR.switchEffect(0, 'slot', effects[selectedShoeID], () => {

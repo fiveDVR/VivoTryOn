@@ -9,28 +9,28 @@
     let token = urlParams.get('id')
     console.log(token);
     if (token == "0") {
-      document.title = "ModelViewer - OBSIDIAN";
-      modelViewer.src = './android/Obsidian.glb'
-      modelViewer.iosSrc = './IOS/Obsidian.usdz'
-      modelViewer.poster = './ObsidianPoster.webp'
+      document.title = "ModelViewer - AQUA";
+      modelViewer.src = './android/Aqua.glb'
+      modelViewer.iosSrc = './IOS/Aqua.usdz'
+      modelViewer.poster = './AquaPoster.png'
     }
     else if (token == "1") {
-      document.title = "ModelViewer - SODIUM"
-      modelViewer.src = './android/Sodium.glb'
-      modelViewer.iosSrc = './IOS/Sodium.usdz'
-      modelViewer.poster = './SodiumPoster.webp'
+      document.title = "ModelViewer - CLOUD"
+      modelViewer.src = './android/Cloud.glb'
+      modelViewer.iosSrc = './IOS/Cloud.usdz'
+      modelViewer.poster = './CloudPoster.png'
     }
     else if (token == "2") {
       document.title = "ModelViewer - LAVA"
       modelViewer.src = './android/Lava.glb'
       modelViewer.iosSrc = './IOS/Lava.usdz'
-      modelViewer.poster = './LavaPoster.webp'
+      modelViewer.poster = './LavaPoster.png'
     }
     else if (token == "3") {
       document.title = "ModelViewer - FOREST"
       modelViewer.src = './android/Forest.glb'
       modelViewer.iosSrc = './IOS/Forest.usdz'
-      modelViewer.poster = './ForestPoster.webp'
+      modelViewer.poster = './ForestPoster.png'
     }
     document.getElementById('TryOnBtn').onclick = function (e) {
       // window.open("/VivoTryOn/index.html", "_self");
